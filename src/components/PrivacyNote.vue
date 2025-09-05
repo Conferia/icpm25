@@ -50,7 +50,7 @@
       </p>
 
       <h4>Contact details of CONFERENCE-ORGANIZER's Data Protection Officer</h4>
-      <p>CONFERENCE-ORGANIZER's DPO: EMAIL-OF-DPO</p>
+      <p>DPO: EMAIL-OF-DPO</p>
     </ion-content>
   </ion-modal>
  </template>
