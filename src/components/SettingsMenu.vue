@@ -7,8 +7,7 @@
     </ion-header>
     <ion-content>
       <div class="ion-padding">
-<!--        <img src="@/assets/images/icpm-logo-1.png" />-->
-        <div id="logo-large" />
+		<img :src="logo" id="logo-large" />
         <p>Welcome {{ name.firstname }} {{name.lastname}}</p>
       </div>
       <ion-list lines="full">
@@ -52,7 +51,9 @@ const name = reactive({
   lastname:""
 });
 const token = localStorage.getItem("accessToken")
-
+const logo = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? backend.config.logoDark
+      : backend.config.logoLight;
 
 onMounted(async () => {
   try {
@@ -83,14 +84,5 @@ const logout = () => {
   height: 50px;
   width: 100%;
   margin-bottom: 10px;
-}
-/* Light Mode */
-body:not(.dark) #logo-large {
-  background-image: url('@/assets/images/icpm-logo-1.png');
-}
-
-/* Dark Mode */
-body.dark #logo-large {
-  background-image: url('@/assets/images/icpm-logo-2.png');
 }
 </style>

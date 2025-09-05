@@ -1,20 +1,20 @@
 {
-  "name": "ICPM Conference",
-  "short_name": "ICPM",
-  "description": "The 2024 International Conference on Process Mining",
+  "name": "Conferia app 2025",
+  "short_name": "Conferia",
+  "description": "The 2025 International Conference on Conferia",
   "icons": [
     {
-      "src": "manifest_icons/64.png",
+      "src": "conferia-logo-64x64.png",
       "sizes": "64x64",
       "type": "image/png"
     },
     {
-      "src": "manifest_icons/192.png",
+      "src": "conferia-logo-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "manifest_icons/512.png",
+      "src": "conferia-logo-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

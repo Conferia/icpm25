@@ -2,10 +2,12 @@
   <ion-header>
     <ion-toolbar>
       <ion-title>{{ name }}</ion-title>
-      <div
-          v-if="name != 'Home'"
-          slot="start"
-          id="logo" />
+		<div
+			v-if="name != 'Home'"
+			slot="start"
+			id="logo">
+			<img :src="logo" style="height: 30px;" alt=""/>
+		</div>
 
       <ion-buttons slot="end" v-if="name == 'Home'">
         <ion-menu-button>
@@ -43,6 +45,7 @@ import {
 } from "@ionic/vue";
 import SettingsMenu from "@/components/SettingsMenu.vue";
 import {ellipsisVertical, reload, options} from 'ionicons/icons';
+import backend from "/backend.config.ts";
 
 defineProps({
   name: String,
@@ -51,6 +54,10 @@ defineProps({
 
 const emits = defineEmits(['openActionSheet', 'reloadPage', 'openFilter']);
 
+const logo = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? backend.config.logoDark
+      : backend.config.logoLight;
+
 </script>
 
 <style scoped>
@@ -58,20 +65,10 @@ const emits = defineEmits(['openActionSheet', 'reloadPage', 'openFilter']);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
-  height: 30px;
-  width: 100px;
   margin-left: 8px;
   margin-top: 4px;
 }
-/* Light Mode */
-body:not(.dark) #logo {
-  background-image: url('@/assets/images/icpm-logo-1.png');
-}
 
-/* Dark Mode */
-body.dark #logo {
-  background-image: url('@/assets/images/icpm-logo-2.png');
-}
 .gallery-dropdown {
   margin-right: 15px;
   color: #3880ff

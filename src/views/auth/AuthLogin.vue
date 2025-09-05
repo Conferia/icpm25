@@ -3,7 +3,7 @@
     <ion-content class="ion-padding">
       <div class="login-container">
         <div class="login-header">
-          <img :src="logo" alt="ICPM Logo" class="logo"/>
+          <img :src="logo" alt="" class="logo"/>
           <ion-segment v-model="selectedSegment" value="login">
             <ion-segment-button value="login" @click="trackButtonClick('Login Segment', 'Auth', 'Navigation')">
             <ion-label>Log in</ion-label>
@@ -45,7 +45,7 @@
           <p v-if="loginError" class="error-message">{{ loginError }}</p>
         </form>
         <form @submit.prevent="sendConfirmationEmail" v-else>
-          <p>You must use the same email address you used to register at the conference (<a href="https://icpmconference.org/2024/registration/" target="_blank">https://icpmconference.org/2024/registration/</a>).</p>
+          <p>You must use the same email address you used to register at the conference.</p>
           <p>Please allow up to 12 hours for emails to be synchronized between the conference registration system and this app.</p>
           <ion-item class="ion-padding-vertical">
             <ion-input
@@ -81,8 +81,6 @@ import {IonPage, IonContent, IonButton, IonInput, IonLabel, IonSegment, IonSegme
 import { ref, computed } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
-import logoLight from '@/assets/images/icpm-logo-1.png';
-import logoDark from '@/assets/images/icpm-logo-2.png';
 import backend from "/backend.config.ts";
 import PrivacyNote from "@/components/PrivacyNote.vue";
 import {googleanalytics} from "@/composables/googleanalytics.ts";
@@ -91,8 +89,8 @@ const { trackButtonClick } = googleanalytics();
 
 const logo = computed(() => {
   return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? logoDark
-      : logoLight;
+      ? backend.config.logoDark
+      : backend.config.logoLight;
 });
 
 const router = useRouter();
@@ -217,7 +215,6 @@ form {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 45px;
   width: 150px;
   margin-right: 10px;
   margin-top: 20%;

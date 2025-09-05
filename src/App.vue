@@ -10,6 +10,17 @@
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
 import OfflinePopup from './components/OfflineComponent.vue';
 import DesktopNotification from './components/DesktopNotification.vue';
+
+fetch('/manifest.json')
+  .then((res) => res.json())
+  .then((manifest) => {
+    // Use "name" or "short_name" from manifest
+    document.title = manifest.name || manifest.short_name || 'My App';
+  })
+  .catch((err) => {
+    console.error('Failed to load manifest.json', err);
+  });
+
 </script>
 
 <style scoped>
