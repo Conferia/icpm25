@@ -42,10 +42,7 @@
         </ion-segment-button>
       </ion-segment>
       <ion-buttons slot="end">
-        <ion-button @click="() =>{
-          trackButtonClick('Monthly Calendar Access', 'Agenda', 'Feature')
-          goToCalendar
-        }">
+        <ion-button @click="goToCalendar">
           <ion-icon :icon="calendarIcon" class="larger-icon" />
         </ion-button>
       </ion-buttons>
