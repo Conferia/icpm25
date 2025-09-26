@@ -11,7 +11,7 @@
           <ion-card-title>ICPM 2025</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-			7th International Conference on Process Mining<br><br>
+			7<sup>th</sup> International Conference on Process Mining<br><br>
 			October 20-24, 2025<br>
 			Montevideo, Uruguay
         </ion-card-content>
