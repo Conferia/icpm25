@@ -2,10 +2,11 @@ type QueryParams = Record<string, string>;
 
 const backend = {
     config: {
-        url: 'http://localhost:8080/api/v1/',
-		logoLight: 'https://conferia.net/img/conferia-logo.svg',
-		logoDark: 'https://conferia.net/img/conferia-logo-dark.svg',
-		homePagePicture: 'https://icpmconference.org/2024/wp-content/uploads/sites/9/2023/09/cph.jpg'
+        // url: 'http://localhost:8080/api/v1/',
+		url: 'https://icpm2025.web.elasticloud.uy:4901/api/v1/',
+		logoLight: '/icpm-logo-1.png',
+		logoDark: '/icpm-logo-2.png',
+		homePagePicture: 'https://icpmconference.org/2025/wp-content/uploads/sites/10/2024/11/montevideo.png'
     },
 
     construct: function(endpoint: string, queryParams: QueryParams = {}): string {

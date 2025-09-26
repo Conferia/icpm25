@@ -3,19 +3,17 @@
     <HeaderBar name="Home" />
 
     <ion-content id="main-content" :fullscreen="true">
-      <img :src="backend.config.homePagePicture" alt=""/>
+      <img :src="backend.config.homePagePicture" width="100%" alt=""/>
 
       <ion-card>
         <ion-card-header>
           <img :src="logo" id="logo-large" />
-          <ion-card-title>Conferia Conference 2025</ion-card-title>
+          <ion-card-title>ICPM 2025</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-			Some text referring to the conference here.<br>
-			For example, it can be the location and date of the conference:<br><br>
-			October 14-18, 2024<br>
-			Technical University of Denmark<br>
-			Kgs. Lyngby, Denmark
+			7th International Conference on Process Mining<br><br>
+			October 20-24, 2025<br>
+			Montevideo, Uruguay
         </ion-card-content>
       </ion-card>
       <p class="ion-padding" style="font-size: 1.5rem; margin-bottom: 0">
@@ -90,8 +88,8 @@ onMounted(async () => {
 
 <style scoped>
 #logo-large {
-  height: 50px;
-  width: 100%;
+  /* height: 50px; */
+  width: 250px;
   margin-bottom: 10px;
 }
 </style>

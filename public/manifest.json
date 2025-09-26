@@ -1,7 +1,7 @@
 {
-  "name": "Conferia app 2025",
-  "short_name": "Conferia",
-  "description": "The 2025 International Conference on Conferia",
+  "name": "ICPM 2025",
+  "short_name": "ICPM",
+  "description": "The 2025 International Conference on Process Mining",
   "icons": [
     {
       "src": "conferia-logo-64x64.png",

@@ -82,7 +82,7 @@ const logout = () => {
   background-repeat: no-repeat;
   background-position: center;
   height: 50px;
-  width: 100%;
+  /* width: 100%; */
   margin-bottom: 10px;
 }
 </style>
