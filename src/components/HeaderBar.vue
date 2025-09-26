@@ -45,7 +45,7 @@ import {
 } from "@ionic/vue";
 import SettingsMenu from "@/components/SettingsMenu.vue";
 import {ellipsisVertical, reload, options} from 'ionicons/icons';
-import backend from "/backend.config.ts";
+import backend from "../../backend.config";
 
 defineProps({
   name: String,
