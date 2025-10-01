@@ -314,7 +314,8 @@ function uniqueDays() {
   let earliestDate = null;
   let latestDate = null;
   state.sessions.forEach(session => {
-    const sessionDate = new Date(session.start_time.split(' ')[0]);
+    const [year, month, day] = session.start_time.split(' ')[0].split("-").map(Number);
+    const sessionDate = new Date(year, month - 1, day);
     if (!earliestDate || sessionDate < earliestDate) {
       earliestDate = sessionDate;
     }
