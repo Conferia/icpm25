@@ -335,7 +335,11 @@ function uniqueDays() {
   }
   const firstDayWithSession = state.uniqueDays.find(day => day.hasSession);
   if (firstDayWithSession) {
-    state.selectedDay = firstDayWithSession.value;
+    if(route.query.date){
+      state.selectedDay = route.query.date;
+    }else{
+      state.selectedDay = firstDayWithSession.value;
+    }
   }
 }
 
