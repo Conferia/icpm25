@@ -278,7 +278,7 @@ async function processSessions(sessionsData) {
 function determineWeekRangeFromSessions(processedSessions) {
   let weekStart, weekEnd;
   if (route.query.date) {
-    const queryDate = new Date(route.query.date);
+    const queryDate = new Date(... route.query.date.split("-").map((v,i)=> i===1?+v-1:+v));
     const weekRange = determineWeek(queryDate);
     weekStart = weekRange.startOfWeek;
     weekEnd = weekRange.endOfWeek;
