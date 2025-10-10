@@ -19,10 +19,10 @@
       </div>
       <div v-else class="ion-padding">
         <h1>{{ pageData.name }}</h1>
-        <p><strong>Session chair:</strong> {{ pageData.host }}</p>
+        <p v-if="pageData && pageData.host"><strong>Session chair:</strong> {{ pageData.host }}</p>
         <p>
           <strong>Time:</strong> {{ dayjs(pageData.startTime).format('D MMMM, HH:mm') }}-{{ dayjs(pageData.endTime).format('HH:mm') }}<br>
-          <strong>Location:</strong> {{ pageData.location }}
+          <strong v-if="pageData && pageData.location">Location:</strong> {{ pageData.location }}
         </p>
         <div v-html="pageData.content"></div>
       </div>
