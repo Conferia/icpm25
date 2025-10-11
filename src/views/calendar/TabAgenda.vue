@@ -166,7 +166,27 @@ async function fetchSessions() {
     console.error('Failed to fetch sessions:', error);
   }
 }
+// Parse date string reliably across browsers (including Safari)
+function parseDate(dateString) {
+  // Expect format: 'YYYY-MM-DD HH:mm'
+  const [datePart, timePart] = dateString.split(' ');
+  if (!datePart || !timePart) {
+    console.warn(`Invalid date format: ${dateString}`);
+    return null; // Return null for invalid dates
+  }
 
+  const [year, month, day] = datePart.split('-').map(Number);
+  const [hour, minute] = timePart.split(':').map(Number);
+
+  // Validate components
+  if (isNaN(year) || isNaN(month) || isNaN(day) || isNaN(hour) || isNaN(minute)) {
+    console.warn(`Invalid date components: ${dateString}`);
+    return null;
+  }
+
+  // Create Date in local timezone (month is 0-based in JavaScript)
+  return new Date(year, month - 1, day, hour, minute, 0);
+}
 async function fetchICPMAgenda() {
   try {
     await fetchLikedSessions();
@@ -177,7 +197,7 @@ async function fetchICPMAgenda() {
     const processedSessions = await processSessions(sessionsData);
     const { weekStart, weekEnd } = determineWeekRangeFromSessions(processedSessions);
     state.sessions = processedSessions.filter(session => {
-      const sessionDate = new Date(session.start_time);
+      const sessionDate = parseDate(session.start_time);
       return sessionDate >= weekStart && sessionDate <= weekEnd;
     });
   } catch (error) {
@@ -197,7 +217,7 @@ async function fetchPersonalAgenda(userId) {
     const processedSessions = await processSessions(sessionsData);
     const { weekStart, weekEnd } = determineWeekRangeFromSessions(processedSessions);
     state.sessions = processedSessions.filter(session => {
-      const sessionDate = new Date(session.start_time);
+      const sessionDate = parseDate(session.start_time);
       return sessionDate >= weekStart && sessionDate <= weekEnd;
     });
   } catch (error) {
@@ -284,7 +304,7 @@ function determineWeekRangeFromSessions(processedSessions) {
     weekEnd = weekRange.endOfWeek;
   } else {
     const earliestSessionDate = processedSessions.reduce((earliest, session) => {
-      const sessionDate = new Date(session.start_time);
+      const sessionDate = new parseDate(session.start_time);
       return !earliest || sessionDate < earliest ? sessionDate : earliest;
     }, null);
     if (earliestSessionDate) {
