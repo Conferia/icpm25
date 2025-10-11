@@ -7,7 +7,7 @@
     </ion-header>
     <ion-content>
       <div class="ion-padding">
-		<img :src="logo" id="logo-large" />
+          <div id="logo-large-settings" />
         <p>Welcome {{ name.firstname }} {{name.lastname}}</p>
       </div>
       <ion-list lines="full">
@@ -51,11 +51,32 @@ const name = reactive({
   lastname:""
 });
 const token = localStorage.getItem("accessToken")
-const logo = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? backend.config.logoDark
-      : backend.config.logoLight;
+const isDarkMode = ref(
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+);
+
+// Function to update CSS custom properties
+const updateLogoImages = () => {
+  document.documentElement.style.setProperty(
+    '--logo-settings-light',
+    `url(${backend.config.logoLight || '/icpm-logo-1.png'})`
+  );
+  document.documentElement.style.setProperty(
+    '--logo-settings-dark',
+    `url(${backend.config.logoDark || '/icpm-logo-2.png'})`
+  );
+};
+
+if (window.matchMedia) {
+  const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  darkModeMediaQuery.addEventListener('change', (event) => {
+    isDarkMode.value = event.matches;
+    updateLogoImages();
+  });
+}
 
 onMounted(async () => {
+  updateLogoImages();
   try {
     const response = await axios.get(backend.construct( 'account/getName'),{ headers: { Authorization: `Bearer ${token}` } });
     name.firstname = response.data.firstname;
@@ -77,7 +98,15 @@ const logout = () => {
 </script>
 
 <style scoped>
-#logo-large {
+body:not(.dark) #logo-large-settings {
+  background-image: var(--logo-settings-light);
+}
+
+body.dark #logo-large-settings {
+  background-image: var(--logo-settings-dark);
+}
+	
+#logo-large-settings {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
