@@ -7,7 +7,7 @@
 
       <ion-card>
         <ion-card-header>
-          <img :src="logo" id="logo-large" />
+          <div id="logo-large" />
           <ion-card-title>ICPM 2025</ion-card-title>
         </ion-card-header>
         <ion-card-content>
@@ -64,20 +64,26 @@ const token = localStorage.getItem('accessToken');
 const isDarkMode = ref(
   window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 );
-const logo = ref(
-  isDarkMode.value ? backend.config.logoDark : backend.config.logoLight
-);
+
+// Function to update CSS custom properties
+const updateLogoImages = () => {
+  document.documentElement.style.setProperty(
+    '--logo-light',
+    `url(${backend.config.logoLight || '/icpm-logo-1.png'})`
+  );
+  document.documentElement.style.setProperty(
+    '--logo-dark',
+    `url(${backend.config.logoDark || '/icpm-logo-2.png'})`
+  );
+};
 
 if (window.matchMedia) {
   const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   darkModeMediaQuery.addEventListener('change', (event) => {
     isDarkMode.value = event.matches;
+    updateLogoImages();
   });
 }
-
-watch(isDarkMode, (newValue) => {
-  logo.value = newValue ? backend.config.logoDark : backend.config.logoLight;
-});
 
 const closeSettingsMenu = async () => {
   await menuController.close('settings-menu');
