@@ -38,7 +38,7 @@
 import {informationCircleOutline, logOutOutline, settingsOutline} from "ionicons/icons";
 import {IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonTitle, IonToolbar} from "@ionic/vue";
 import {useRouter} from 'vue-router';
-import {onMounted, reactive} from "vue";
+import {onMounted, reactive, ref, watch} from "vue";
 import axios from "axios";
 import backend from "../../backend.config";
 import {googleanalytics} from "@/composables/googleanalytics";
