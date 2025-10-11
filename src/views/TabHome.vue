@@ -94,6 +94,7 @@ onBeforeRouteLeave((to, from) => {
 });
 
 onMounted(async () => {
+  updateLogoImages();
   try {
     const response = await axios.get(backend.construct('pages'), {
       headers: { Authorization: `Bearer ${token}` },
